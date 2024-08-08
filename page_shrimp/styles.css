@@ -1,0 +1,319 @@
+:root {
+    --primary-dark: #24272e;
+    --primary-dark-light: #34373e;
+    --accent: #079e0c;
+    --accent-light: #caf0ff;
+    --transition-duration-timing-to: 150ms ease-out;
+    --transition-duration-timing-from: 300ms ease-out;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+
+}
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+}
+
+
+
+nav {
+    background-color: #00abdf;
+    color: white;
+    padding: 1px;
+    text-align: left;
+}
+
+nav h1 {
+    padding: 10px;
+    font-weight: 700;
+    font-size: 1.5rem;
+    font-family: cursive, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.status {
+    text-align: center;
+    padding: 10px;
+}
+
+.status h2 {
+    padding: 20px;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.status p {
+    padding: 10px;
+    font-size: 1.5rem;
+}
+
+.status h3 {
+    padding: 10px;
+    font-size: 1.5rem;
+}
+
+.status span {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+
+
+.footer {
+    font-size: 1.2rem;
+    font-weight: 900;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #00abdf;
+    color: white;
+    padding: 10px;
+    margin-top: 1rem;
+    text-align: center;
+    font-family: cursive, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.footer a {
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    padding: 3px 0;
+    position: relative;
+}
+
+.footer a:hover {
+    color: rgb(236, 236, 236);
+}
+
+.footer a:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #fff;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+.footer a:hover:after {
+    width: 100%;
+    left: 0;
+}
+
+/* switch */
+.switch-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.switch-container {
+    padding: 1em;
+    width: min(14em, 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+
+    &:hover,
+    &:has(input:focus),
+    &:has(input:focus-visible) {
+        outline: 3px solid var(--accent-light);
+    }
+}
+
+.label {
+    margin-right: 1em;
+}
+
+.toggle-container {
+    --_switch-height: 24px;
+    --_switch-width: 48px;
+
+    position: relative;
+    margin-right: 0.5em;
+    height: var(--_switch-height);
+    width: var(--_switch-width);
+
+    /* Visually hide checkbox but preserve accessibility. */
+    & input {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
+}
+
+/* The slider */
+.slider {
+    --outline-width: 1px;
+
+    position: absolute;
+    inset: 0;
+
+    background-color: var(--primary-dark-light);
+    border-radius: 9999px;
+    outline: 2px solid whitesmoke;
+    cursor: pointer;
+    transition: background-color var(--transition-duration-timing-from);
+
+    .toggle-container input:checked+& {
+        background-color: var(--accent);
+        filter: brightness(130%);
+        transition: background-color var(--transition-duration-timing-to);
+    }
+
+    &::before {
+        --_ratio: 80%;
+        --_offset: 2px;
+
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: var(--_offset);
+        right: unset;
+        translate: 0 -50%;
+        height: var(--_ratio);
+        aspect-ratio: 1 / 1;
+        background-color: rgba(245 245 245 / 0.85);
+        border-radius: 50%;
+        transition: translate var(--transition-duration-timing-from);
+    }
+
+    .toggle-container input:checked+&::before {
+        left: 0;
+        translate: calc((var(--_switch-width) - 100%) - var(--_offset)) -50%;
+        transition: translate var(--transition-duration-timing-to);
+    }
+}
+
+.switch-status {
+    color: whitesmoke;
+    opacity: 0.85;
+
+    .toggle-container:has(#switch[checked])+& {
+        opacity: 1;
+        font-weight: 500;
+    }
+}
+
+/* button */
+.btn1 {
+    height: 3.5rem;
+    padding: 0 2rem;
+    border: 0.1rem solid #000;
+    border-radius: 3.12rem;
+    box-shadow: 0 0.4rem 0 0 #000;
+    background-color: #fff;
+    color: #000;
+    font-family: "Epilogue", sans-serif;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+        transform: translateY(0.3rem);
+        box-shadow: 0 0.2rem 0 0 #000;
+    }
+}
+
+.btn1:focus {
+    transform: translateY(0.3rem);
+    box-shadow: 0 0.2rem 0 0 #000;
+}
+
+.btn1.solution:not(:focus) {
+    transition-duration: 0s;
+}
+
+/* table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination button {
+    padding: 8px 16px;
+    margin: 0 4px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+/*tigger button*/
+#button {
+    display: inline-block;
+    background-color: #4265c6;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 60px;
+    right: 30px;
+}
+
+.tap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.notification .badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    padding: 7px 7px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles.css">
+    <script src="../static/scripts.js"></script>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1>Shrimp counting system</h1>
+        </nav>
+    </header>
+
+    <a href="my_farm.html" id="button" class="notification"><img src="tap.png" width="35" height="35" class="tap"><span
+            class="badge"></span></a>
+
+    <div class="content">
+        <img src="shrimp.png" width="150" height="150" class="logo">
+        <div class="status">
+            <h2>STATUS</h2>
+        </div>
+        <div class="status">
+            <h3>Water Pump</h3>
+            <label for="switch1" class="switch-container switch-center">
+                <div class="toggle-container">
+                    <input id="switch1" type="checkbox" role="switch1" />
+                    <span class="slider"></span>
+                </div>
+                <span id="switch-status1" class="toggle-status">OFF</span>
+            </label>
+
+            <h3>Light</h3>
+            <label for="switch2" class="switch-container switch-center">
+                <div class="toggle-container ">
+                    <input id="switch2" type="checkbox" role="switch2" />
+                    <span class="slider"></span>
+                </div>
+                <span id="switch-status2" class="toggle-status">OFF</span>
+            </label>
+        </div>
+    </div>
+    <!-- </div>
+        <h1>System Control</h1>
+        <p>Water Pump</p>
+        <button onclick="system('ON')" class="button_start">Start Pump</button>
+        <button onclick="system('OFF')" class="button_stop">Stop Pump</button>
+        <p>Light</p>
+        <button onclick="light('ON')" class="button_start">Open Light</button>
+        <button onclick="light('OFF')" class="button_stop">Close Light</button>
+    </div> -->
+
+    <div class="footer">
+        <ul>
+            <a href="index.html">System</a>
+
+            <span> | </span>
+            <a href="counting.html">Counting</a>
+
+            <span> | </span>
+            <a href="data.html">History</a>
+        </ul>
+    </div>
+</body>
+<script src="scripts.js"></script>
+
+</html>

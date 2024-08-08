@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1>Shrimp counting system</h1>
+        </nav>
+    </header>
+
+    <a href="my_farm.html" id="button" class="notification"><img src="tap.png" width="35" height="35" class="tap"><span
+            class="badge"></span></a>
+
+    <div class="content">
+        <img src="shrimp.png" width="150" height="150" class="logo">
+        <div class="status">
+            <h2>History</h2>
+        </div>
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>TIME STAMP</th>
+                    <th>COUNTED</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <!-- Rows will be added here dynamically -->
+            </tbody>
+        </table>
+        <div class="pagination" id="pagination-controls">
+            <!-- Pagination buttons will be added here dynamically -->
+        </div>
+    </div>
+
+    <div class="footer">
+        <ul>
+            <a href="index.html">System</a>
+            <span> | </span>
+            <a href="counting.html">Counting</a>
+            <span> | </span>
+            <a href="data.html">History</a>
+        </ul>
+    </div>
+
+    <script>
+        fetch("http://localhost:8888/shrimp_quantities/?skip=0&limit=10", {
+            method: "GET",
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                displayData(data)
+                console.log(data); // Process your data here
+                const row = document.createElement('tr');
+                const timeStampCell = document.createElement('td');
+                timeStampCell.textContent = item.time_stamp;
+                const countedCell = document.createElement('td');
+                countedCell.textContent = item.counted;
+                row.appendChild(timeStampCell);
+                row.appendChild(countedCell);
+                tableBody.appendChild(row);
+                console.log("Added row:", row); // Debug: log added row
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+
+        function displayData(data) {
+            const tableBody = document.getElementById('table-body');
+            tableBody.innerHTML = '';
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                <td>${item.timestamp}</td>
+                <td>${item.quantity}</td>
+            `;
+                tableBody.appendChild(row);
+            });
+        }
+
+    </script>
+</body>
+
+</html>

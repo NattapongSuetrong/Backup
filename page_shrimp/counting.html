@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+    <!--<link rel="stylesheet" href="../static/styles.css">-->
+    <!--<script src="../static/scripts.js"></script>-->
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <h1>Shrimp counting system</h1>
+        </nav>
+    </header>
+
+    <a href="my_farm.html" id="button" class="notification"><img src="tap.png" width="35" height="35" class="tap"><span
+            class="badge"></span></a>
+
+    <div class="content">
+        <img src="shrimp.png" width="150" height="150" class="logo">
+        <div class="status">
+            <h2>Count</h2>
+            <h3 id="shrimpQuantity">0</h3>
+        </div>
+        <div class="status">
+            <button class="btn1" onclick="Status('START')">Start</button>
+        </div>
+        <div class="status">
+            <button class="btn1" onclick="controller('SAVE')">Save</button>
+        </div>
+        <!--<div class="status">
+            <button class="btn1" onclick="Status('START')">Reset</button>
+        </div> -->
+
+
+
+
+    </div>
+    <!-- </div>
+        <h1>System Control</h1>
+        <p>Water Pump</p>
+        <button onclick="system('ON')" class="button_start">Start Pump</button>
+        <button onclick="system('OFF')" class="button_stop">Stop Pump</button>
+        <p>Light</p>
+        <button onclick="light('ON')" class="button_start">Open Light</button>
+        <button onclick="light('OFF')" class="button_stop">Close Light</button>
+    </div> -->
+
+    <div class="footer">
+        <ul>
+            <a href="index.html">System</a></li>
+            <span> | </span>
+            <a href="counting.html">Counting</a></li>
+            <span> | </span>
+            <a href="data.html">History</a></li>
+        </ul>
+    </div>
+</body>
+
+<script>
+    
+function controller(status){
+    Status(status)
+    value()
+    }
+    
+async function Status(status) {
+    await fetch(`http://localhost:8888/Count/${status}`, {
+        method: 'POST'
+    })
+    .then(response => {
+        console.log(status)
+        document.getElementById("shrimpQuantity").innerHTML = 0;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        
+    });
+}
+
+async function value(){
+    await fetch(`http://localhost:8888/count_value/`, {
+            method: "GET",
+        })
+        .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+               console.log(data.count_value)
+               document.getElementById("shrimpQuantity").innerHTML = data.count_value;
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+}
+
+</script>
+
+</html>

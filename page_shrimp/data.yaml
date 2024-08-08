@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 1
+names: ['shrimp']
+
+roboflow:
+  workspace: mydetect-o2wvw
+  project: baby-shrimp-snwte
+  version: 3
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/mydetect-o2wvw/baby-shrimp-snwte/dataset/3

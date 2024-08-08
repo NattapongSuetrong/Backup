@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagination Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .pagination button {
+            padding: 8px 16px;
+            margin: 0 4px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="my_farm.html" id="button" class="notification"><img src="tap.png" width="35" height="35" class="tap"><span
+            class="badge"></span></a>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            <!-- Rows will be added here dynamically -->
+        </tbody>
+    </table>
+    <div class="pagination" id="pagination-controls">
+        <!-- Pagination buttons will be added here dynamically -->
+    </div>
+
+    <script>
+        const data = [
+            { column1: 'Data 1-1', column2: 'Data 1-2' },
+            { column1: 'Data 2-1', column2: 'Data 2-2' },
+            { column1: 'Data 3-1', column2: 'Data 3-2' },
+            { column1: 'Data 4-1', column2: 'Data 4-2' },
+            { column1: 'Data 5-1', column2: 'Data 5-2' },
+            { column1: 'Data 6-1', column2: 'Data 6-2' },
+            { column1: 'Data 7-1', column2: 'Data 7-2' },
+            { column1: 'Data 8-1', column2: 'Data 8-2' },
+            { column1: 'Data 9-1', column2: 'Data 9-2' },
+            { column1: 'Data 10-1', column2: 'Data 10-2' }
+        ];
+
+        const rowsPerPage = 3;
+        let currentPage = 1;
+
+        function displayTable(page) {
+            const start = (page - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const paginatedData = data.slice(start, end);
+
+            const tableBody = document.getElementById('table-body');
+            tableBody.innerHTML = '';
+
+            paginatedData.forEach(row => {
+                const rowElement = document.createElement('tr');
+                rowElement.innerHTML = `
+                    <td>${row.column1}</td>
+                    <td>${row.column2}</td>
+                `;
+                tableBody.appendChild(rowElement);
+            });
+
+            displayPaginationControls();
+        }
+
+        function displayPaginationControls() {
+            const paginationControls = document.getElementById('pagination-controls');
+            paginationControls.innerHTML = '';
+
+            const totalPages = Math.ceil(data.length / rowsPerPage);
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement('button');
+                button.textContent = i;
+                button.className = i === currentPage ? 'active' : '';
+                button.addEventListener('click', () => {
+                    currentPage = i;
+                    displayTable(currentPage);
+                });
+                paginationControls.appendChild(button);
+            }
+        }
+
+        displayTable(currentPage);
+    </script>
+</body>
+
+</html>
